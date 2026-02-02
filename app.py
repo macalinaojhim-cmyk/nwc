@@ -1,9 +1,8 @@
-
 import streamlit as st 
 import pandas as pd
     
 
-st.title("🚚Delivery cost Minimization")
+st.title("🚚Delivery cost Calculator using NorthWest Corner Algorithm")
 
 st.subheader("Supply")
 
@@ -50,10 +49,6 @@ delivery_cost = {
     }
 }
 
-
-st.table(delivery_cost)
-
-
 total_supply = sum(supplier_data["Supply"])
 total_demand = sum(demand_data["Demand"])
 
@@ -92,7 +87,7 @@ if total_supply == total_demand:
     sC -= x_CC
     dC -= x_CC
 
-    st.subheader("North West Corner Table (NWC)")
+    st.subheader("North West Corner Table")
     nwc_table = {
         "Warehouse" : [
             "Warehouse A", "Warehouse B", "Warehouse C"
@@ -136,10 +131,10 @@ if total_supply == total_demand:
         ]
     }
 
-    st.table(nwc_table)
     df = pd.DataFrame(nwc_cost_table).set_index("Warehouses")
     st.dataframe(df)
-    
+    st.dataframe(pd.DataFrame(nwc_table).set_index("Warehouse"))
+
     st.subheader("Total Cost (Northwest Corner)")
 
     nwc_total_cost = (
@@ -149,10 +144,10 @@ if total_supply == total_demand:
     x_CB * delivery_cost["Warehouse C"]["Demand B"] +
     x_CC * delivery_cost["Warehouse C"]["Demand C"]
 )
-
+    nwc_totalcost_sol = f"Total cost = ({x_AA} * {delivery_cost["Warehouse A"]["Demand A"]}) + ({x_BA} * {delivery_cost["Warehouse B"]["Demand A"]}) + ({x_BB} * {delivery_cost["Warehouse B"]["Demand B"]}) + ({x_CB} * {delivery_cost["Warehouse C"]["Demand B"]}) + ({x_CC} * {delivery_cost["Warehouse C"]["Demand C"]})"
+    st.write(nwc_totalcost_sol)
     st.success(f"Total Transportation Cost = ₱ {nwc_total_cost}")
 
 else: 
     st.error("Problem is not balanced")
-
 
