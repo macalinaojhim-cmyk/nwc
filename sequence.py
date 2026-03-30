@@ -9,7 +9,7 @@ def main():
     st.write("-Minimize Makespan")
     st.write("-Minimize Completion Time")
     st.write("-Minimize Lateness")
-    st.write("-Minimize Idle Tim")
+    st.write("-Minimize Idle Time")
     st.subheader("Jhonson's Method")
     st.subheader("Case 1:\n   --Processing n jobs thru 2 Machines")
         
@@ -73,7 +73,7 @@ def case1(machines_number, jobs_number, machine_worktime, machine_name, job_name
   
     st.write(f"Makespan:  {makespan(optimal_sequence,machine_worktime, machine_name)[1]}hrs")
 
-    st.write("Idle Time: ")
+    st.subheader("Idle Time: ")
 
     st.write(f"{machine_name[0]}:   {makespan(optimal_sequence,machine_worktime, machine_name)[2]}hrs")
     
