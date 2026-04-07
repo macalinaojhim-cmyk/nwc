@@ -10,7 +10,7 @@ def main():
     st.write("-Minimize Completion Time")
     st.write("-Minimize Lateness")
     st.write("-Minimize Idle Time")
-    st.subheader("Jhonson's Method")
+    st.subheader("Johnson's Method")
     st.subheader("Case 1:\n   --Processing n jobs thru 2 Machines")
         
     chars = "abcdefghijklmnopqrstuvwxyz"
