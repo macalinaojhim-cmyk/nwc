@@ -71,7 +71,7 @@ def case1(machines_number, jobs_number, machine_worktime, machine_name, job_name
 
     st.table(makespan(optimal_sequence,machine_worktime,machine_name)[0])
   
-    st.write(f"Makespan:  {makespan(optimal_sequence,machine_worktime, machine_name)[1]}hrs")
+    st.write(f"Total Makespan Time:  {makespan(optimal_sequence,machine_worktime, machine_name)[1]}hrs")
 
     st.subheader("Idle Time: ")
 
