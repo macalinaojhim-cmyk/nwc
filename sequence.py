@@ -18,17 +18,18 @@ def main():
     jobs_number = st.number_input("Number of Jobs: ", value=3, min_value=1, step=1)
     machine_worktime = []
 
+    job_name = list(chars[:jobs_number])   
             
     for i in range(machines_number):
             
         try:
-            worktime = list(map(int, st.text_input(f"Enter worktime of machine {i+1} to {jobs_number} jobs (Separated by space):(e.g. 1 2 3 4)",placeholder="e.g. 1 2 3 4 5").split()))
+            worktime = list(map(int, st.text_input(f"Enter worktime of machine {i+1} to {jobs_number}({job_name[0]}-{job_name[-1]}) jobs (Separated by space):(e.g. 1 2 3 4)",placeholder="e.g. 1 2 3 4 5").split()))
             machine_worktime.append(worktime)
             
         except ValueError:
             st.error("Invalid Input.")
 
-    job_name = list(chars[:jobs_number])
+    
     machine_name = ["Machine " + letter.upper() for letter in chars[:machines_number]]
 
     if machines_number == 2:
