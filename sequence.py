@@ -23,7 +23,7 @@ def main():
     for i in range(machines_number):
             
         try:
-            worktime = list(map(int, st.text_input(f"Enter worktime of machine {i+1} to {jobs_number}({job_name[0]}-{job_name[-1]}) jobs (Separated by space):(e.g. 1 2 3 4)",placeholder="e.g. 1 2 3 4 5").split()))
+            worktime = list(map(int, st.text_input(f"Enter worktime of machine {i+1} to {jobs_number}({job_name[0]} - {job_name[-1]}) jobs (separated by space)",placeholder="e.g. 1 2 3 4 5").split()))
             machine_worktime.append(worktime)
             
         except ValueError:
