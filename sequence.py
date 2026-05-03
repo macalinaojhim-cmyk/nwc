@@ -4,33 +4,36 @@ import streamlit as st
 
 def main():
 
-    st.markdown("<h1 style='text-align: center;'>Sequencing Problem Calculator</h1>", unsafe_allow_html=True)
-    st.subheader("-Objectives")
-    st.write("-Minimize Makespan")
-    st.write("-Minimize Completion Time")
-    st.write("-Minimize Lateness")
-    st.write("-Minimize Idle Time")
-    st.subheader("Johnson's Method")
-    st.subheader("--Processing n jobs thru 2 Machines")
-        
+    st.markdown("<h1 style='text-align: center;'>Print-Laminate Scheduler</h1>", unsafe_allow_html=True)
+    st.write("-This application solves a two-machine scheduling problem in a printing and laminating shop." \
+    " Each project is first printed and then laminated." \
+    " The goal is to determine the optimal sequence of projects that minimizes total completion time(makespan) using Johnson's Method.")
+
+    st.subheader("Instructions:")
+    st.write("1. Enter how many projects\n2. Input processing times for :\nPrinting (Machine A) and Laminating (MachineB)\n3. Click Calculate")
+    st.write("")
+    st.write("")
+
+
     chars = "abcdefghijklmnopqrstuvwxyz"
     machines_number = 2
-    jobs_number = st.number_input("Number of Jobs: ", value=3, min_value=1, step=1)
+    jobs_number = st.number_input("Number of projects: ", value=3, min_value=1, step=1)
     machine_worktime = []
 
     job_name = list(chars[:jobs_number])   
             
-    for i in range(machines_number):
-            
-        try:
-            worktime = list(map(int, st.text_input(f"Enter worktime of machine {i+1} to {jobs_number} jobs ({job_name[0]} - {job_name[-1]}) (separated by space)",placeholder="e.g. 1 2 3 4 5").split()))
-            machine_worktime.append(worktime)
-            
-        except ValueError:
-            st.error("Invalid Input.")
+    try:
+        printing_time = list(map(int, st.text_input(f"Enter the Printing Time of {jobs_number} projects ({job_name[0]} - {job_name[-1]}) (separated by space)",key="printing_input ",placeholder="e.g. 1 2 3 4 5").split()))
+        laminating_time = list(map(int, st.text_input(f"Enter the Printing Time of {jobs_number} projects ({job_name[0]} - {job_name[-1]}) (separated by space)",key="laminating_input",placeholder="e.g. 1 2 3 4 5").split()))
+
+        machine_worktime.append(printing_time)    
+        machine_worktime.append(laminating_time)
+
+    except ValueError:
+        st.error("Invalid Input.")
 
     
-    machine_name = ["Machine " + letter.upper() for letter in chars[:machines_number]]
+    machine_name = ["Machine A (Printing)", "Machine B (Laminating)"]
 
     if machines_number == 2:
     
@@ -48,12 +51,12 @@ def case1(machines_number, jobs_number, machine_worktime, machine_name, job_name
 
     table = pd.DataFrame(machine_worktime, index=machine_name, columns=job_name, dtype=int)
     st.table(table) 
-    st.subheader("Optimal Sequence:")
+    st.subheader("Optimal Schedule:")
 
     optimal_sequence = schedule(machine_worktime, job_name)[0]
     optimal_schedule = schedule(machine_worktime, job_name)[1]
 
-    optimal_sequence_table = pd.DataFrame({'Jobs': optimal_sequence}, index=optimal_schedule)
+    optimal_sequence_table = pd.DataFrame({'Projects': optimal_sequence}, index=optimal_schedule)
 
     st.table(optimal_sequence_table)
 
@@ -177,7 +180,7 @@ def makespan(sequence, machine_worktime, machine_name):
     }
 
     columns = pd.MultiIndex.from_tuples([
-        ('','Optimal sequence'),
+        ('','Optimal schedule'),
         (machine_name[0], 'in'),
         (machine_name[0], 'out'),
         (machine_name[1 ], 'in'),
