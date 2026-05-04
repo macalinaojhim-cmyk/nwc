@@ -4,7 +4,7 @@ import streamlit as st
 
 def main():
 
-    st.markdown("<h1 style='text-align: center;'>Print-Laminate Scheduler</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Print-Laminate Schedule Optimizer</h1>", unsafe_allow_html=True)
     st.write("-This application solves a two-machine scheduling problem in a printing and laminating shop." \
     " Each project is first printed and then laminated." \
     " The goal is to determine the optimal sequence of projects that minimizes total completion time(makespan) using Johnson's Method.")
