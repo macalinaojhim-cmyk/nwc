@@ -64,13 +64,13 @@ def case1(machines_number, jobs_number, machine_worktime, machine_name, job_name
 
     st.table(makespan(optimal_sequence,machine_worktime,machine_name)[0])
   
-    st.write(f"Total Makespan Time:  {makespan(optimal_sequence,machine_worktime, machine_name)[1]}hrs")
+    st.write(f"Total Makespan Time:  {makespan(optimal_sequence,machine_worktime, machine_name)[1]}mins")
 
     st.subheader("Idle Time: ")
 
-    st.write(f"{machine_name[0]}:   {makespan(optimal_sequence,machine_worktime, machine_name)[2]}hrs")
+    st.write(f"{machine_name[0]}:   {makespan(optimal_sequence,machine_worktime, machine_name)[2]}mins")
     
-    st.write(f"{machine_name[1]}:   {makespan(optimal_sequence,machine_worktime, machine_name)[3]}hrs")
+    st.write(f"{machine_name[1]}:   {makespan(optimal_sequence,machine_worktime, machine_name)[3]}mins")
 
 def schedule(machine_worktime, job_name):
     
